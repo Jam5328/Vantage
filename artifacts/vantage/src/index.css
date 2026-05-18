@@ -45,28 +45,28 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* Wix brand palette — deep navy with purple-blue gradient accent */
+/* Wix brand palette — white background with navy text and purple-blue accent */
 :root {
-  --background: 240 64% 17%;       /* #16163F — Wix primary navy */
-  --foreground: 0 0% 100%;          /* white */
-  --card: 240 58% 20%;              /* slightly lighter navy */
-  --card-foreground: 0 0% 100%;
-  --card-border: 240 38% 28%;
-  --popover: 240 58% 20%;
-  --popover-foreground: 0 0% 100%;
-  --popover-border: 240 38% 28%;
-  --primary: 0 0% 100%;             /* white primary (buttons on dark bg) */
-  --primary-foreground: 240 64% 17%;
-  --secondary: 240 50% 22%;         /* deeper navy */
-  --secondary-foreground: 0 0% 90%;
-  --muted: 240 44% 24%;
-  --muted-foreground: 240 13% 62%;  /* muted light */
+  --background: 0 0% 100%;          /* white */
+  --foreground: 240 64% 17%;        /* #16163F — Wix primary navy */
+  --card: 0 0% 98%;                 /* near-white card */
+  --card-foreground: 240 64% 17%;
+  --card-border: 240 20% 88%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 64% 17%;
+  --popover-border: 240 20% 88%;
+  --primary: 240 64% 17%;           /* navy primary (buttons on white bg) */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 20% 94%;         /* light navy-tinted gray */
+  --secondary-foreground: 240 64% 17%;
+  --muted: 240 15% 95%;
+  --muted-foreground: 240 13% 45%;  /* muted dark */
   --accent: 262 84% 58%;            /* #7C3AED — Wix purple accent */
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-  --border: 240 38% 28%;            /* navy border */
-  --input: 240 44% 24%;
+  --border: 240 20% 88%;            /* light border */
+  --input: 240 15% 95%;
   --ring: 262 84% 58%;              /* purple ring */
   --radius: 0rem;
 
@@ -102,7 +102,7 @@
     border-image: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) 1;
   }
   .navy-card {
-    background: hsl(240 58% 20%);
-    border: 1px solid hsl(240 38% 28%);
+    background: hsl(0 0% 98%);
+    border: 1px solid hsl(240 20% 88%);
   }
 }
