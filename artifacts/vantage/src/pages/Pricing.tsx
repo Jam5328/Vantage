@@ -1,55 +1,137 @@
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+};
+
 export default function Pricing() {
   return (
     <div className="w-full">
-      <section className="py-24 bg-card border-b border-border">
-        <div className="container px-4 max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6">Positioning</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            Indicative market positioning for VANTAGE services across the Bristol / BS36 operational area.
-          </p>
+
+      {/* Header */}
+      <section className="bg-white border-b border-neutral-200 py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            className="space-y-5"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400">Investment</p>
+            <h1 className="text-4xl md:text-6xl font-serif text-neutral-900">Pricing</h1>
+            <p className="text-lg text-neutral-500 font-light max-w-2xl leading-relaxed">
+              Indicative market positioning for VANTAGE services across the Bristol and BS36 operational area.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="container px-4 max-w-4xl">
-          <div className="border border-border p-8 md:p-12 space-y-8 bg-card">
-            
-            <div className="space-y-4 border-b border-border pb-8">
-              <h2 className="text-2xl font-serif">Pricing Structure</h2>
-              <p className="text-muted-foreground">
-                Pricing is determined by two primary variables: physical property size and portfolio volume commitments. 
-                We do not publish fixed rate cards as requirements scale non-linearly.
-              </p>
-            </div>
+      {/* Pricing content */}
+      <section className="bg-white py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="space-y-0">
 
-            <div className="space-y-6 border-b border-border pb-8">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-primary">Market Benchmarking</h3>
-              <ul className="space-y-4 text-muted-foreground text-sm">
-                <li className="flex gap-4 items-start">
-                  <span className="text-primary mt-0.5">›</span>
-                  <span><strong>Inventories & Inspections:</strong> Competitively positioned against local Bristol providers, optimized for accuracy over speed.</span>
-                </li>
-                <li className="flex gap-4 items-start">
-                  <span className="text-primary mt-0.5">›</span>
-                  <span><strong>360° Tours:</strong> Premium-tier service offering, priced according to spatial complexity and post-processing requirements.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="space-y-6">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-primary">Agency Engagements</h3>
-              <p className="text-muted-foreground text-sm">
-                Bespoke retained packages are available for letting agencies and high-volume operators requiring continuous coverage. This includes SLA guarantees and priority dispatch.
-              </p>
-              
-              <div className="pt-4">
-                <a href="/#contact" className="inline-flex h-10 items-center justify-center border border-input bg-transparent px-8 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground">
-                  Request Commercial Proposal
-                </a>
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="py-16 border-b border-neutral-200 grid md:grid-cols-12 gap-8"
+            >
+              <div className="md:col-span-4">
+                <h2 className="text-xs font-medium uppercase tracking-widest text-neutral-400">Structure</h2>
               </div>
-            </div>
+              <div className="md:col-span-8 space-y-4">
+                <h3 className="text-xl font-serif text-neutral-900">How pricing is determined</h3>
+                <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                  Pricing is determined by two primary variables: the physical size of the property and portfolio volume commitments. We do not publish fixed rate cards as requirements scale non-linearly across property types and service combinations.
+                </p>
+                <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                  All enquiries receive a tailored proposal based on your specific operational requirements.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="py-16 border-b border-neutral-200 grid md:grid-cols-12 gap-8"
+            >
+              <div className="md:col-span-4">
+                <h2 className="text-xs font-medium uppercase tracking-widest text-neutral-400">Market Position</h2>
+              </div>
+              <div className="md:col-span-8 space-y-6">
+                <h3 className="text-xl font-serif text-neutral-900">Benchmarked against the Bristol market</h3>
+                <div className="space-y-5">
+                  {[
+                    {
+                      label: "Inventories & Inspections",
+                      desc: "Competitively positioned against established Bristol-area providers. Optimised for documentation accuracy and legal robustness, not speed.",
+                    },
+                    {
+                      label: "360° Property Tours",
+                      desc: "Premium-tier service positioned according to spatial complexity, post-processing requirements, and final deliverable quality.",
+                    },
+                    {
+                      label: "Check-In / Check-Out Reports",
+                      desc: "Priced per report with rapid turnaround. Volume pricing available for agencies requiring consistent coverage across a portfolio.",
+                    },
+                  ].map(({ label, desc }, i) => (
+                    <div key={i} className="flex gap-4 items-start">
+                      <span className="text-neutral-300 mt-0.5 shrink-0 text-sm">—</span>
+                      <div className="space-y-1">
+                        <span className="text-sm font-medium text-neutral-700">{label}</span>
+                        <p className="text-sm text-neutral-500 font-light leading-relaxed">{desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="py-16 grid md:grid-cols-12 gap-8"
+            >
+              <div className="md:col-span-4">
+                <h2 className="text-xs font-medium uppercase tracking-widest text-neutral-400">Agency Packages</h2>
+              </div>
+              <div className="md:col-span-8 space-y-5">
+                <h3 className="text-xl font-serif text-neutral-900">Retained agreements for high-volume operators</h3>
+                <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                  Bespoke retained packages are available for letting agencies and high-volume operators requiring continuous portfolio coverage. Retained agreements include SLA guarantees, priority dispatch, and standardised reporting templates across your property portfolio.
+                </p>
+                <p className="text-sm text-neutral-500 font-light leading-relaxed">
+                  These are structured as rolling agreements with a minimum volume commitment, providing both price certainty and consistent service standards.
+                </p>
+                <div className="pt-4">
+                  <a
+                    href="/#contact"
+                    className="inline-flex h-11 items-center justify-center border border-neutral-300 text-neutral-700 px-8 text-sm font-medium tracking-wide transition-colors hover:border-neutral-900 hover:text-neutral-900"
+                  >
+                    Request a Commercial Proposal
+                  </a>
+                </div>
+              </div>
+            </motion.div>
 
           </div>
+        </div>
+      </section>
+
+      {/* Note */}
+      <section className="bg-neutral-50 border-t border-neutral-200 py-14">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-3">
+          <p className="text-xs font-medium uppercase tracking-widest text-neutral-400">Coverage Area</p>
+          <p className="text-sm text-neutral-500 font-light leading-relaxed max-w-lg mx-auto">
+            VANTAGE currently operates across Bristol and the BS36 postcode area. Out-of-area engagements considered for retained agency clients. Contact us to discuss coverage.
+          </p>
         </div>
       </section>
     </div>
