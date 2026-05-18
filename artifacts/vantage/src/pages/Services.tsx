@@ -4,35 +4,30 @@ import bristolBw from "@/assets/images/bristol-bw.jpg";
 const services = [
   {
     title: "Residential Inventories",
-    tag: "Primary Service",
     desc: "Comprehensive, legally robust condition reporting establishing the baseline state of a property at the commencement of a tenancy. Each report is structured to serve as admissible evidence in dispute resolution proceedings.",
     useCases: ["New tenancy commencements", "Portfolio acquisition handovers", "HMO and multi-unit properties"],
     benefits: ["DPS-compliant format and structure", "High-resolution photographic evidence", "Meter reading verification", "Room-by-room item logging"],
   },
   {
     title: "360° Property Tours",
-    tag: "Primary Service",
     desc: "Immersive spatial documentation capturing every angle of an environment simultaneously. Used for remote marketing, high-value condition evidence, and permanent spatial records of a property's condition.",
     useCases: ["Remote letting and marketing", "High-value condition evidence", "Pre-refurbishment baseline capture"],
     benefits: ["Undeniable spatial context", "Reduced physical viewing requirements", "Premium marketing asset", "Permanent spatial record"],
   },
   {
     title: "Check-In / Check-Out Reports",
-    tag: "Secondary Service",
     desc: "Detailed comparative analysis against baseline inventories to definitively establish liability at the point of tenancy transition. Designed to withstand adjudicator scrutiny.",
     useCases: ["Tenancy transitions", "Dispute resolution proceedings", "Deposit deduction justification"],
     benefits: ["Clear delineation of fair wear and tear", "Immediate liability highlighting", "Rapid turnaround on request", "Structured for adjudication use"],
   },
   {
     title: "Mid-Term Inspections",
-    tag: "Secondary Service",
     desc: "Periodic operational checks conducted during active tenancies to monitor condition, compliance, and maintenance requirements. Proactive rather than reactive.",
     useCases: ["Ongoing tenancy management", "Preventative maintenance planning", "Compliance verification"],
     benefits: ["Early issue detection before escalation", "Tenant compliance verification", "Asset condition preservation", "Structured maintenance reporting"],
   },
   {
     title: "Documentation Systems",
-    tag: "Secondary Service",
     desc: "Bespoke documentation frameworks for letting agencies and property managers requiring consistency across their portfolios. Standardised reporting templates and workflows.",
     useCases: ["Multi-branch agency standardisation", "Portfolio management", "Contractor briefing materials"],
     benefits: ["Consistent report standards across portfolio", "Reduced contractor variation", "Clear operational workflows"],
@@ -55,7 +50,10 @@ export default function Services() {
             <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40">Our Capabilities</p>
             <h1 className="text-4xl md:text-6xl font-serif text-white">Services</h1>
             <p className="text-lg text-white/55 font-light max-w-2xl leading-relaxed">
-              Rigorous documentation systems designed to protect assets, reduce risk, and eliminate ambiguity across the full tenancy lifecycle.
+              Structured property documentation services designed to support landlords, letting agents and accommodation operators throughout the full tenancy lifecycle. From inventories and 360 walkthroughs to inspections, check-ins and check-outs, each service is built around clear reporting, reliable visual evidence and organised digital delivery.
+            </p>
+            <p className="text-base text-white/45 font-light max-w-2xl leading-relaxed">
+              The focus is on creating accurate, professional documentation that helps reduce disputes, improve property visibility and support smoother day-to-day property operations across HMOs, student housing, serviced accommodation and residential rentals.
             </p>
           </motion.div>
         </div>
@@ -78,9 +76,6 @@ export default function Services() {
                   <span className="text-2xl font-serif text-white/15">0{i + 1}</span>
                 </div>
                 <div className="md:col-span-4 space-y-4">
-                  <span className={`text-xs font-medium uppercase tracking-widest ${srv.tag === "Primary Service" ? "gradient-text" : "text-white/35"}`}>
-                    {srv.tag}
-                  </span>
                   <h2 className="text-2xl font-serif text-white leading-snug">{srv.title}</h2>
                   <p className="text-sm text-white/55 font-light leading-relaxed">{srv.desc}</p>
                 </div>
@@ -118,14 +113,14 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Bristol aerial CTA — B&W moody shot */}
+      {/* Bristol aerial CTA */}
       <section className="relative h-[55vh] flex items-center justify-center overflow-hidden">
         <img
           src={bristolBw}
           alt="Bristol cityscape"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #0D0D2A/95, #16163F/60, transparent)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,42,0.95), rgba(22,22,63,0.6), transparent)" }} />
         <div className="absolute inset-0 bg-[#16163F]/50" />
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center space-y-6">
           <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/50">Additional</p>

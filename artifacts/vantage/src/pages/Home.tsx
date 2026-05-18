@@ -1,55 +1,85 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import bristolAerial from "@/assets/images/bristol-aerial.jpg";
+import vantageIcon from "@/assets/images/vantage-icon.png";
 import LeadForm from "@/components/forms/LeadForm";
 
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const [scrollDark, setScrollDark] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroRef.current) return;
+      const heroH = heroRef.current.offsetHeight;
+      const progress = Math.min(window.scrollY / (heroH * 0.7), 1);
+      setScrollDark(progress);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="w-full">
 
-      {/* Hero — Bristol aerial photography */}
-      <section className="relative min-h-screen flex items-end overflow-hidden">
+      {/* Hero */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={bristolAerial}
             alt="Bristol residential properties"
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D2A]/90 via-[#16163F]/60 to-[#16163F]/20" />
+          {/* Base gradient — lighter so more image shows */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D2A]/70 via-[#16163F]/30 to-transparent" />
+          {/* Scroll-driven darkening overlay */}
+          <div
+            className="absolute inset-0 bg-[#0D0D2A] pointer-events-none transition-none"
+            style={{ opacity: scrollDark * 0.65 }}
+          />
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-24 pt-40">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 text-center space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="max-w-2xl space-y-7"
+            className="flex flex-col items-center gap-6"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/50">
+            <img
+              src={vantageIcon}
+              alt="VANTAGE"
+              className="w-20 h-20 md:w-28 md:h-28 object-contain"
+            />
+            <h1 className="text-7xl md:text-9xl font-serif text-white tracking-[0.12em] uppercase leading-none">
+              VANTAGE
+            </h1>
+            <p className="text-base md:text-lg text-white/60 font-light tracking-[0.2em] uppercase">
               Bristol Property Documentation
             </p>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-tight">
-              Evidence.<br />Not aesthetics.
-            </h1>
-            <p className="text-lg md:text-xl text-white/65 font-light leading-relaxed max-w-xl">
-              Added clarity = added confidence. Audit-ready documentation and professional reporting systems for letting agencies and property managers.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <a
-                href="#contact"
-                className="inline-flex h-12 items-center justify-center gradient-bg text-white px-8 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
-                data-testid="link-book-call"
-              >
-                Book a Call
-              </a>
-              <Link
-                href="/services"
-                className="inline-flex h-12 items-center justify-center border border-white/30 text-white px-8 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
-                data-testid="link-services"
-              >
-                View Services
-              </Link>
-            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+          >
+            <a
+              href="#contact"
+              className="inline-flex h-12 items-center justify-center gradient-bg text-white px-10 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
+              data-testid="link-book-call"
+            >
+              Book a Call
+            </a>
+            <Link
+              href="/services"
+              className="inline-flex h-12 items-center justify-center border border-white/40 text-white px-10 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
+              data-testid="link-services"
+            >
+              View Services
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -92,7 +122,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40 mb-4">Why VANTAGE</p>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] gradient-text mb-4">Why VANTAGE</p>
             <h2 className="text-3xl md:text-4xl font-serif text-white">Problems We Solve</h2>
           </motion.div>
 
@@ -127,7 +157,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: col * 0.1 }}
                 className="space-y-8"
               >
-                <h3 className="text-xs font-medium uppercase tracking-widest text-white/40 border-b border-white/10 pb-4">
+                <h3 className="text-xs font-medium uppercase tracking-widest gradient-text border-b border-white/10 pb-4">
                   {heading}
                 </h3>
                 <ul className="space-y-5">
@@ -154,7 +184,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40 mb-4">What We Do</p>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] gradient-text mb-4">What We Do</p>
             <h2 className="text-3xl md:text-4xl font-serif text-white">Core Services</h2>
           </motion.div>
 
@@ -162,25 +192,21 @@ export default function Home() {
             {[
               {
                 title: "Residential Inventories",
-                tag: "Primary",
                 desc: "Comprehensive, legally robust condition reporting establishing the baseline state of a property. DPS-compliant format, high-resolution evidence, meter reading verification.",
               },
               {
                 title: "360° Property Tours",
-                tag: "Primary",
                 desc: "Immersive spatial documentation capturing every angle simultaneously. Undeniable spatial context, reduced physical viewing requirements, and a premium marketing asset.",
               },
               {
                 title: "Check-In / Check-Out Reports",
-                tag: "Secondary",
                 desc: "Detailed comparative analysis against baseline inventories. Clear delineation of fair wear and tear with rapid turnaround for tenancy transitions.",
               },
               {
                 title: "Mid-Term Inspections",
-                tag: "Secondary",
                 desc: "Periodic operational checks to monitor compliance, condition, and maintenance requirements. Early issue detection and asset preservation.",
               },
-            ].map(({ title, tag, desc }, i) => (
+            ].map(({ title, desc }, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 16 }}
@@ -191,9 +217,6 @@ export default function Home() {
                 style={{ backgroundColor: "#16163F" }}
               >
                 <div className="flex items-center justify-between">
-                  <span className={`text-xs font-medium uppercase tracking-widest ${tag === "Primary" ? "gradient-text" : "text-white/35"}`}>
-                    {tag}
-                  </span>
                   <span className="text-xs text-white/20 font-light">0{i + 1}</span>
                 </div>
                 <h3 className="text-xl font-serif text-white">{title}</h3>
@@ -213,7 +236,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Methodology */}
+      {/* How It Works */}
       <section className="py-24 border-y border-white/10" style={{ backgroundColor: "#16163F" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
@@ -223,16 +246,28 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40 mb-4">Process</p>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] gradient-text mb-4">Process</p>
             <h2 className="text-3xl md:text-4xl font-serif text-white">How It Works</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
             {[
-              { step: "Book", desc: "Schedule via our portal. Parameters and access requirements established upfront." },
-              { step: "Capture", desc: "On-site execution. Comprehensive visual and contextual data gathering." },
-              { step: "Document", desc: "Data structured into standardised, audit-compliant formats." },
-              { step: "Deliver", desc: "Reports transferred within agreed SLAs, ready for immediate use." },
+              {
+                step: "Booking",
+                desc: "Property details, access arrangements and service requirements are confirmed upfront for inventories, 360 tours, inspections or check-in/check-out visits.",
+              },
+              {
+                step: "On-Site Documentation",
+                desc: "The property is documented room-by-room using structured inventories, detailed imagery and immersive 360 walkthrough capture.",
+              },
+              {
+                step: "Report Preparation",
+                desc: "Images, condition notes and observations are compiled into a clear, professional digital report format.",
+              },
+              {
+                step: "Digital Delivery",
+                desc: "Completed reports, photo sets and 360 walkthrough links are delivered with fast turnaround, ready for immediate landlord, agent or tenant use.",
+              },
             ].map(({ step, desc }, i) => (
               <motion.div
                 key={step}
@@ -252,44 +287,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust */}
+      {/* Credibility */}
       <section className="py-24" style={{ backgroundColor: "#0D0D2A" }}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40">Credibility</p>
-              <h2 className="text-3xl md:text-4xl font-serif text-white">Built on operational experience</h2>
-              <p className="text-sm text-white/55 font-light leading-relaxed max-w-md">
-                VANTAGE is not a photography service with a new name. It is a documentation system built by someone who has worked inside property management and understands the consequences of poor evidence.
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl space-y-8"
+          >
+            <p className="text-xs font-medium uppercase tracking-[0.25em] gradient-text">Credibility</p>
+            <h2 className="text-3xl md:text-4xl font-serif text-white">Built on operational experience</h2>
+            <div className="space-y-5">
+              <p className="text-sm text-white/60 font-light leading-relaxed">
+                VANTAGE is not a creative media agency repackaged for property. It is a structured documentation service built by someone with real property management experience and an understanding of how important clear evidence, accurate reporting and reliable records are throughout a tenancy lifecycle.
               </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-5"
-            >
-              {[
-                "6 years direct property management experience",
-                "Extensive lettings agency operational exposure",
-                "Inventories, check-ins, check-outs, and dispute resolution experience",
-                "Deep familiarity with DPS and Property Redress Scheme standards",
-                "Maintenance coordination and landlord-facing communication",
-              ].map((point, i) => (
-                <div key={i} className="flex gap-4 items-start text-sm text-white/60 font-light">
-                  <span className="w-1.5 h-1.5 rounded-full gradient-bg mt-2 shrink-0" />
-                  <span>{point}</span>
-                </div>
-              ))}
-            </motion.div>
-          </div>
+              <p className="text-sm text-white/60 font-light leading-relaxed">
+                The focus is simple: produce organised, professional property documentation that landlords, agents and operators can rely on.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -307,7 +325,7 @@ export default function Home() {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40">Get in Touch</p>
               <h2 className="text-3xl md:text-4xl font-serif text-white">Make an Enquiry</h2>
               <p className="text-sm text-white/55 font-light leading-relaxed max-w-sm">
-                Tell us about your portfolio and requirements. We will respond within one business day with a proposal tailored to your operation.
+                Tell us about your portfolio and requirements. We will respond with a proposal tailored to your operation.
               </p>
               <div className="pt-4 space-y-3 text-sm text-white/45 font-light">
                 <p>Serving: Bristol & BS36 area</p>
