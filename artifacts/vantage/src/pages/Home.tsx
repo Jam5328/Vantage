@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import bristolAerial from "@/assets/images/bristol-aerial.jpg";
-import vantageIcon from "@/assets/images/vantage-icon.png";
 import LeadForm from "@/components/forms/LeadForm";
 
 export default function Home() {
@@ -45,13 +44,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="flex flex-col items-center gap-6"
+            className="flex flex-col items-center gap-5"
           >
-            <img
-              src={vantageIcon}
-              alt="VANTAGE"
-              className="w-20 h-20 md:w-28 md:h-28 object-contain"
-            />
             <h1 className="text-7xl md:text-9xl font-serif text-white tracking-[0.12em] uppercase leading-none">
               VANTAGE
             </h1>
