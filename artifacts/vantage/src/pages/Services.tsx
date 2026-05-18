@@ -1,10 +1,5 @@
 import { motion } from "framer-motion";
-import interiorImg from "@/assets/images/interior.png";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-};
+import bristolBw from "@/assets/images/bristol-bw.jpg";
 
 const services = [
   {
@@ -49,17 +44,17 @@ export default function Services() {
     <div className="w-full">
 
       {/* Header */}
-      <section className="bg-white border-b border-neutral-200 py-24">
+      <section className="border-b border-white/10 py-24" style={{ backgroundColor: "#0D0D2A" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
             className="space-y-5"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400">Our Capabilities</p>
-            <h1 className="text-4xl md:text-6xl font-serif text-neutral-900">Services</h1>
-            <p className="text-lg text-neutral-500 font-light max-w-2xl leading-relaxed">
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40">Our Capabilities</p>
+            <h1 className="text-4xl md:text-6xl font-serif text-white">Services</h1>
+            <p className="text-lg text-white/55 font-light max-w-2xl leading-relaxed">
               Rigorous documentation systems designed to protect assets, reduce risk, and eliminate ambiguity across the full tenancy lifecycle.
             </p>
           </motion.div>
@@ -67,48 +62,50 @@ export default function Services() {
       </section>
 
       {/* Service list */}
-      <section className="bg-white py-16">
+      <section className="py-16" style={{ backgroundColor: "#16163F" }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="space-y-0">
             {services.map((srv, i) => (
               <motion.div
                 key={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="grid md:grid-cols-12 gap-8 py-16 border-b border-neutral-200 last:border-0 items-start"
+                transition={{ duration: 0.6 }}
+                className="grid md:grid-cols-12 gap-8 py-16 border-b border-white/10 last:border-0 items-start"
               >
                 <div className="md:col-span-1">
-                  <span className="text-2xl font-serif text-neutral-200">0{i + 1}</span>
+                  <span className="text-2xl font-serif text-white/15">0{i + 1}</span>
                 </div>
                 <div className="md:col-span-4 space-y-4">
-                  <span className="text-xs font-medium uppercase tracking-widest text-neutral-400">{srv.tag}</span>
-                  <h2 className="text-2xl font-serif text-neutral-900 leading-snug">{srv.title}</h2>
-                  <p className="text-sm text-neutral-500 font-light leading-relaxed">{srv.desc}</p>
+                  <span className={`text-xs font-medium uppercase tracking-widest ${srv.tag === "Primary Service" ? "gradient-text" : "text-white/35"}`}>
+                    {srv.tag}
+                  </span>
+                  <h2 className="text-2xl font-serif text-white leading-snug">{srv.title}</h2>
+                  <p className="text-sm text-white/55 font-light leading-relaxed">{srv.desc}</p>
                 </div>
                 <div className="md:col-span-7 grid sm:grid-cols-2 gap-8 md:pl-8">
                   <div className="space-y-4">
-                    <h4 className="text-xs font-medium uppercase tracking-widest text-neutral-400 border-b border-neutral-200 pb-3">
+                    <h4 className="text-xs font-medium uppercase tracking-widest text-white/35 border-b border-white/10 pb-3">
                       Use Cases
                     </h4>
                     <ul className="space-y-3">
                       {srv.useCases.map((uc, j) => (
-                        <li key={j} className="flex gap-3 text-sm text-neutral-600 font-light">
-                          <span className="text-neutral-300 shrink-0">—</span>
+                        <li key={j} className="flex gap-3 text-sm text-white/55 font-light">
+                          <span className="gradient-text shrink-0 font-medium">—</span>
                           <span>{uc}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-xs font-medium uppercase tracking-widest text-neutral-400 border-b border-neutral-200 pb-3">
+                    <h4 className="text-xs font-medium uppercase tracking-widest text-white/35 border-b border-white/10 pb-3">
                       Benefits
                     </h4>
                     <ul className="space-y-3">
                       {srv.benefits.map((b, j) => (
-                        <li key={j} className="flex gap-3 text-sm text-neutral-600 font-light">
-                          <span className="text-neutral-300 shrink-0">—</span>
+                        <li key={j} className="flex gap-3 text-sm text-white/55 font-light">
+                          <span className="gradient-text shrink-0 font-medium">—</span>
                           <span>{b}</span>
                         </li>
                       ))}
@@ -121,23 +118,24 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Marketing media CTA — full-width image */}
+      {/* Bristol aerial CTA — B&W moody shot */}
       <section className="relative h-[55vh] flex items-center justify-center overflow-hidden">
         <img
-          src={interiorImg}
-          alt="VANTAGE interior documentation"
+          src={bristolBw}
+          alt="Bristol cityscape"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #0D0D2A/95, #16163F/60, transparent)" }} />
+        <div className="absolute inset-0 bg-[#16163F]/50" />
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center space-y-6">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/60">Additional</p>
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/50">Additional</p>
           <h2 className="text-3xl md:text-4xl font-serif text-white">Marketing Media Support</h2>
-          <p className="max-w-xl mx-auto text-base text-white/70 font-light leading-relaxed">
+          <p className="max-w-xl mx-auto text-base text-white/60 font-light leading-relaxed">
             Beyond compliance documentation, we provide precision-engineered visual assets for high-end property marketing.
           </p>
           <a
             href="/#contact"
-            className="inline-flex h-11 items-center justify-center bg-white text-neutral-900 px-8 text-sm font-medium tracking-wide transition-colors hover:bg-white/90"
+            className="inline-flex h-11 items-center justify-center gradient-bg text-white px-8 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
           >
             Enquire
           </a>

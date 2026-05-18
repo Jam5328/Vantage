@@ -1,26 +1,21 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import heroImg from "@/assets/images/hero.png";
+import bristolAerial from "@/assets/images/bristol-aerial.jpg";
 import LeadForm from "@/components/forms/LeadForm";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-};
 
 export default function Home() {
   return (
     <div className="w-full">
 
-      {/* Hero */}
+      {/* Hero — Bristol aerial photography */}
       <section className="relative min-h-screen flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src={heroImg}
-            alt="VANTAGE property exterior"
+            src={bristolAerial}
+            alt="Bristol residential properties"
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D2A]/90 via-[#16163F]/60 to-[#16163F]/20" />
         </div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pb-24 pt-40">
@@ -30,26 +25,26 @@ export default function Home() {
             transition={{ duration: 0.9 }}
             className="max-w-2xl space-y-7"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/60">
-              Property Documentation Systems
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/50">
+              Bristol Property Documentation
             </p>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-tight">
               Evidence.<br />Not aesthetics.
             </h1>
-            <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed max-w-xl">
+            <p className="text-lg md:text-xl text-white/65 font-light leading-relaxed max-w-xl">
               Added clarity = added confidence. Audit-ready documentation and professional reporting systems for letting agencies and property managers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a
                 href="#contact"
-                className="inline-flex h-12 items-center justify-center bg-white text-neutral-900 px-8 text-sm font-medium tracking-wide transition-colors hover:bg-white/90"
+                className="inline-flex h-12 items-center justify-center gradient-bg text-white px-8 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
                 data-testid="link-book-call"
               >
                 Book a Call
               </a>
               <Link
                 href="/services"
-                className="inline-flex h-12 items-center justify-center border border-white/60 text-white px-8 text-sm font-medium tracking-wide transition-colors hover:bg-white/10"
+                className="inline-flex h-12 items-center justify-center border border-white/30 text-white px-8 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
                 data-testid="link-services"
               >
                 View Services
@@ -60,9 +55,9 @@ export default function Home() {
       </section>
 
       {/* Stats bar */}
-      <section className="bg-white border-b border-neutral-200">
+      <section className="border-y border-white/10" style={{ backgroundColor: "#0D0D2A" }}>
         <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x divide-neutral-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x divide-white/10">
             {[
               { stat: "6", unit: "Years", label: "Direct property management and lettings agency experience" },
               { stat: "100%", unit: "Audit-ready", label: "Documentation built to withstand DPS and Property Redress Scheme scrutiny" },
@@ -70,17 +65,17 @@ export default function Home() {
             ].map(({ stat, unit, label }, i) => (
               <motion.div
                 key={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="md:px-12 first:pl-0 last:pr-0 space-y-2"
               >
                 <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-serif text-neutral-200">{stat}</span>
-                  <span className="text-xs font-medium uppercase tracking-widest text-neutral-400">{unit}</span>
+                  <span className="text-5xl font-serif gradient-text">{stat}</span>
+                  <span className="text-xs font-medium uppercase tracking-widest text-white/40">{unit}</span>
                 </div>
-                <p className="text-sm text-neutral-500 font-light leading-relaxed">{label}</p>
+                <p className="text-sm text-white/50 font-light leading-relaxed">{label}</p>
               </motion.div>
             ))}
           </div>
@@ -88,90 +83,82 @@ export default function Home() {
       </section>
 
       {/* Problems We Solve */}
-      <section className="bg-neutral-50 py-24">
+      <section className="py-24" style={{ backgroundColor: "#16163F" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-4">Why VANTAGE</p>
-            <h2 className="text-3xl md:text-4xl font-serif text-neutral-900">Problems We Solve</h2>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40 mb-4">Why VANTAGE</p>
+            <h2 className="text-3xl md:text-4xl font-serif text-white">Problems We Solve</h2>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <h3 className="text-xs font-medium uppercase tracking-widest text-neutral-400 border-b border-neutral-200 pb-4">
-                For Letting Agencies
-              </h3>
-              <ul className="space-y-5">
-                {[
+            {[
+              {
+                heading: "For Letting Agencies",
+                items: [
                   "Inconsistent inventory reporting across properties and branches.",
                   "Disputes failing due to insufficient photographic or documented evidence.",
                   "Inefficient check-in and check-out workflows consuming staff time.",
                   "Fragmented documentation systems with no standardisation.",
                   "Lack of uniformity across contractor-produced reports.",
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-4 text-sm text-neutral-600 font-light leading-relaxed">
-                    <span className="text-neutral-300 mt-0.5 shrink-0">—</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="space-y-8"
-            >
-              <h3 className="text-xs font-medium uppercase tracking-widest text-neutral-400 border-b border-neutral-200 pb-4">
-                For Landlords & SA Operators
-              </h3>
-              <ul className="space-y-5">
-                {[
+                ],
+              },
+              {
+                heading: "For Landlords & SA Operators",
+                items: [
                   "Damage disputes with no baseline condition evidence to refer to.",
                   "Unclear property condition tracking across mid-tenancy periods.",
                   "Poor quality listing visuals limiting platform conversion rates.",
                   "Inefficient and reactive reporting processes.",
                   "Reactive maintenance responses due to lack of documented evidence.",
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-4 text-sm text-neutral-600 font-light leading-relaxed">
-                    <span className="text-neutral-300 mt-0.5 shrink-0">—</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+                ],
+              },
+            ].map(({ heading, items }, col) => (
+              <motion.div
+                key={col}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: col * 0.1 }}
+                className="space-y-8"
+              >
+                <h3 className="text-xs font-medium uppercase tracking-widest text-white/40 border-b border-white/10 pb-4">
+                  {heading}
+                </h3>
+                <ul className="space-y-5">
+                  {items.map((item, i) => (
+                    <li key={i} className="flex gap-4 text-sm text-white/65 font-light leading-relaxed">
+                      <span className="gradient-text mt-0.5 shrink-0 font-medium">—</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Core Services */}
-      <section className="bg-white py-24">
+      <section className="py-24" style={{ backgroundColor: "#0D0D2A" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-4">What We Do</p>
-            <h2 className="text-3xl md:text-4xl font-serif text-neutral-900">Core Services</h2>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40 mb-4">What We Do</p>
+            <h2 className="text-3xl md:text-4xl font-serif text-white">Core Services</h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-px bg-neutral-200">
+          <div className="grid md:grid-cols-2 gap-px" style={{ backgroundColor: "rgba(255,255,255,0.07)" }}>
             {[
               {
                 title: "Residential Inventories",
@@ -196,18 +183,21 @@ export default function Home() {
             ].map(({ title, tag, desc }, i) => (
               <motion.div
                 key={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white p-10 space-y-4 group hover:bg-neutral-50 transition-colors"
+                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+                className="p-10 space-y-4 group transition-colors"
+                style={{ backgroundColor: "#16163F" }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium uppercase tracking-widest text-neutral-400">{tag}</span>
-                  <span className="text-xs text-neutral-300 font-light">0{i + 1}</span>
+                  <span className={`text-xs font-medium uppercase tracking-widest ${tag === "Primary" ? "gradient-text" : "text-white/35"}`}>
+                    {tag}
+                  </span>
+                  <span className="text-xs text-white/20 font-light">0{i + 1}</span>
                 </div>
-                <h3 className="text-xl font-serif text-neutral-900">{title}</h3>
-                <p className="text-sm text-neutral-500 font-light leading-relaxed">{desc}</p>
+                <h3 className="text-xl font-serif text-white">{title}</h3>
+                <p className="text-sm text-white/55 font-light leading-relaxed">{desc}</p>
               </motion.div>
             ))}
           </div>
@@ -215,7 +205,7 @@ export default function Home() {
           <div className="mt-10 text-center">
             <Link
               href="/services"
-              className="inline-flex h-11 items-center justify-center border border-neutral-300 text-neutral-700 px-8 text-sm font-medium tracking-wide transition-colors hover:border-neutral-900 hover:text-neutral-900"
+              className="inline-flex h-11 items-center justify-center border border-white/20 text-white/70 px-8 text-sm font-medium tracking-wide transition-colors hover:border-white/50 hover:text-white"
             >
               View Full Capabilities
             </Link>
@@ -224,17 +214,17 @@ export default function Home() {
       </section>
 
       {/* Methodology */}
-      <section className="bg-neutral-50 py-24 border-y border-neutral-200">
+      <section className="py-24 border-y border-white/10" style={{ backgroundColor: "#16163F" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400 mb-4">Process</p>
-            <h2 className="text-3xl md:text-4xl font-serif text-neutral-900">How It Works</h2>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40 mb-4">Process</p>
+            <h2 className="text-3xl md:text-4xl font-serif text-white">How It Works</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
@@ -246,17 +236,16 @@ export default function Home() {
             ].map(({ step, desc }, i) => (
               <motion.div
                 key={step}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ delay: i * 0.1 }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="space-y-4"
               >
-                <span className="text-6xl font-serif text-neutral-200 block">0{i + 1}</span>
-                <div className="h-px w-10 bg-neutral-400" />
-                <h4 className="text-xs font-medium uppercase tracking-widest text-neutral-900">{step}</h4>
-                <p className="text-sm text-neutral-500 font-light leading-relaxed">{desc}</p>
+                <span className="text-6xl font-serif text-white/10 block">0{i + 1}</span>
+                <div className="h-px w-10 gradient-bg" />
+                <h4 className="text-xs font-medium uppercase tracking-widest text-white">{step}</h4>
+                <p className="text-sm text-white/50 font-light leading-relaxed">{desc}</p>
               </motion.div>
             ))}
           </div>
@@ -264,27 +253,27 @@ export default function Home() {
       </section>
 
       {/* Trust */}
-      <section className="bg-white py-24">
+      <section className="py-24" style={{ backgroundColor: "#0D0D2A" }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400">Credibility</p>
-              <h2 className="text-3xl md:text-4xl font-serif text-neutral-900">Built on operational experience</h2>
-              <p className="text-sm text-neutral-500 font-light leading-relaxed max-w-md">
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40">Credibility</p>
+              <h2 className="text-3xl md:text-4xl font-serif text-white">Built on operational experience</h2>
+              <p className="text-sm text-white/55 font-light leading-relaxed max-w-md">
                 VANTAGE is not a photography service with a new name. It is a documentation system built by someone who has worked inside property management and understands the consequences of poor evidence.
               </p>
             </motion.div>
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               className="space-y-5"
             >
               {[
@@ -294,8 +283,8 @@ export default function Home() {
                 "Deep familiarity with DPS and Property Redress Scheme standards",
                 "Maintenance coordination and landlord-facing communication",
               ].map((point, i) => (
-                <div key={i} className="flex gap-4 items-start text-sm text-neutral-600 font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 mt-2 shrink-0" />
+                <div key={i} className="flex gap-4 items-start text-sm text-white/60 font-light">
+                  <span className="w-1.5 h-1.5 rounded-full gradient-bg mt-2 shrink-0" />
                   <span>{point}</span>
                 </div>
               ))}
@@ -305,22 +294,22 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="bg-neutral-50 py-24 border-t border-neutral-200">
+      <section id="contact" className="py-24 border-t border-white/10" style={{ backgroundColor: "#16163F" }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16">
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <p className="text-xs font-medium uppercase tracking-[0.25em] text-neutral-400">Get in Touch</p>
-              <h2 className="text-3xl md:text-4xl font-serif text-neutral-900">Make an Enquiry</h2>
-              <p className="text-sm text-neutral-500 font-light leading-relaxed max-w-sm">
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/40">Get in Touch</p>
+              <h2 className="text-3xl md:text-4xl font-serif text-white">Make an Enquiry</h2>
+              <p className="text-sm text-white/55 font-light leading-relaxed max-w-sm">
                 Tell us about your portfolio and requirements. We will respond within one business day with a proposal tailored to your operation.
               </p>
-              <div className="pt-4 space-y-3 text-sm text-neutral-500 font-light">
+              <div className="pt-4 space-y-3 text-sm text-white/45 font-light">
                 <p>Serving: Bristol & BS36 area</p>
                 <p>Turnaround: 24–48 hours</p>
                 <p>Agency packages available</p>
@@ -328,10 +317,10 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               <LeadForm />
             </motion.div>
