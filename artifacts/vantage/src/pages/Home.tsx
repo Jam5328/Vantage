@@ -40,22 +40,22 @@ export default function Home() {
           />
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-28 text-center space-y-8">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-20 sm:pt-24 md:pt-28 text-center space-y-5 sm:space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="flex flex-col items-center gap-5"
+            className="flex flex-col items-center gap-3 sm:gap-5"
           >
             <img
               src={vantageIcon}
               alt="VANTAGE"
-              className="w-20 h-20 md:w-28 md:h-28 object-contain"
+              className="w-12 h-12 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain"
             />
-            <h1 className="text-7xl md:text-9xl font-serif text-white tracking-[0.12em] uppercase leading-none">
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-serif text-white tracking-[0.12em] uppercase leading-none">
               VANTAGE
             </h1>
-            <p className="text-base md:text-lg text-white/60 font-light tracking-[0.2em] uppercase">
+            <p className="text-xs sm:text-base md:text-lg text-white/60 font-light tracking-[0.2em] uppercase">
               Bristol Property Documentation
             </p>
           </motion.div>
@@ -64,18 +64,18 @@ export default function Home() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-2 sm:pt-4"
           >
             <a
               href="#contact"
-              className="inline-flex h-12 items-center justify-center gradient-bg text-white px-10 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
+              className="inline-flex h-11 sm:h-12 items-center justify-center gradient-bg text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
               data-testid="link-book-call"
             >
               Book a Call
             </a>
             <Link
               href="/services"
-              className="inline-flex h-12 items-center justify-center border border-white/40 text-white px-10 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
+              className="inline-flex h-11 sm:h-12 items-center justify-center border border-white/40 text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
               data-testid="link-services"
             >
               View Services
