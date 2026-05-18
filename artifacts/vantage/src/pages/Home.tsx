@@ -24,7 +24,7 @@ export default function Home() {
     <div className="w-full">
 
       {/* Hero */}
-      <section ref={heroRef} className="relative h-[calc(100dvh-5rem)] flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative h-dvh flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={bristolAerial}
