@@ -24,84 +24,61 @@ export default function Home() {
     <div className="w-full">
 
       {/* Hero */}
-      <section ref={heroRef} className="relative h-dvh overflow-hidden">
-
-        {/* Background image — fully visible at load */}
+      <section ref={heroRef} className="relative h-dvh flex items-start justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={bristolAerial}
             alt="Bristol residential properties"
             className="w-full h-full object-cover object-center"
           />
-          {/* Minimal bottom gradient for text readability only */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D2A]/55 via-transparent to-transparent" />
-          {/* Scroll-driven darkening — starts at 0, builds as you scroll */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D2A]/70 via-[#16163F]/30 to-transparent" />
           <div
-            className="absolute inset-0 bg-[#0D0D2A] pointer-events-none"
-            style={{ opacity: scrollProgress * 0.75 }}
+            className="absolute inset-0 bg-[#0D0D2A] pointer-events-none transition-none"
+            style={{ opacity: scrollProgress * 0.65 }}
           />
-          {/* White fade at very top — blends navbar seamlessly into photo */}
-          <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white/20 to-transparent pointer-events-none z-10" />
         </div>
 
-        {/* Brand mark — top right, horizontal */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="absolute top-0 right-0 z-20 flex items-center gap-2.5 px-6 sm:px-8 pt-5 sm:pt-6"
-        >
-          <img
-            src={vantageIcon}
-            alt="Vantage"
-            className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
-          />
-          <span className="font-serif text-sm sm:text-base tracking-[0.2em] uppercase text-white/80">
-            Vantage
-          </span>
-        </motion.div>
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-20 sm:pt-24 md:pt-28 text-center space-y-5 sm:space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="flex flex-col items-center gap-3 sm:gap-5"
+          >
+            <img
+              src={vantageIcon}
+              alt="Vantage"
+              className="w-12 h-12 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain"
+            />
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-serif text-white tracking-[0.12em] uppercase leading-none">
+              VANTAGE
+            </h1>
+            <p className="text-xs sm:text-base md:text-lg text-white/60 font-light tracking-[0.2em] uppercase">
+              Every detail, professionally captured
+            </p>
+          </motion.div>
 
-        {/* Main hero content — centred */}
-        <div className="absolute inset-0 z-10 flex items-center justify-center px-6">
-          <div className="text-center space-y-6 sm:space-y-8 max-w-3xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-tight"
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-2 sm:pt-4"
+          >
+            <a
+              href="#contact"
+              className="inline-flex h-11 sm:h-12 items-center justify-center gradient-bg text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
+              data-testid="link-book-call"
             >
-              Every detail,<br className="hidden sm:block" /> professionally captured.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.2 }}
-              className="text-sm sm:text-base text-white/60 font-light tracking-[0.15em] uppercase"
+              Book a Call
+            </a>
+            <Link
+              href="/services"
+              className="inline-flex h-11 sm:h-12 items-center justify-center border border-white/40 text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
+              data-testid="link-services"
             >
-              Bristol Property Documentation
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.35 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-2"
-            >
-              <a
-                href="#contact"
-                className="inline-flex h-11 sm:h-12 items-center justify-center gradient-bg text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
-                data-testid="link-book-call"
-              >
-                Book a Call
-              </a>
-              <Link
-                href="/services"
-                className="inline-flex h-11 sm:h-12 items-center justify-center border border-white/40 text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
-                data-testid="link-services"
-              >
-                View Services
-              </Link>
-            </motion.div>
-          </div>
+              View Services
+            </Link>
+          </motion.div>
         </div>
       </section>
 
