@@ -26,12 +26,6 @@ const services = [
     useCases: ["Ongoing tenancy management", "Preventative maintenance planning", "Compliance verification"],
     benefits: ["Early issue detection before escalation", "Tenant compliance verification", "Asset condition preservation", "Structured maintenance reporting"],
   },
-  {
-    title: "Documentation Systems",
-    desc: "Bespoke documentation frameworks for letting agencies and property managers requiring consistency across their portfolios. Standardised reporting templates and workflows.",
-    useCases: ["Multi-branch agency standardisation", "Portfolio management", "Contractor briefing materials"],
-    benefits: ["Consistent report standards across portfolio", "Reduced contractor variation", "Clear operational workflows"],
-  },
 ];
 
 export default function Services() {
@@ -113,26 +107,27 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Bristol aerial CTA */}
+      {/* CTA — Dispute prevention */}
       <section className="relative h-[55vh] flex items-center justify-center overflow-hidden">
         <img
           src={bristolBw}
-          alt="Bristol cityscape"
+          alt="Bristol property"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,42,0.95), rgba(22,22,63,0.6), transparent)" }} />
-        <div className="absolute inset-0 bg-[#16163F]/50" />
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center space-y-6">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/50">Additional</p>
-          <h2 className="text-3xl md:text-4xl font-serif text-white">Marketing Media Support</h2>
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,42,0.96), rgba(22,22,63,0.75), rgba(13,13,42,0.3))" }} />
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center space-y-6">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/50">Why it matters</p>
+          <h2 className="text-3xl md:text-4xl font-serif text-white leading-snug">
+            Most deposit disputes are lost before they begin
+          </h2>
           <p className="max-w-xl mx-auto text-base text-white/60 font-light leading-relaxed">
-            Beyond compliance documentation, we provide precision-engineered visual assets for high-end property marketing.
+            Without a detailed, timestamped inventory and photographic baseline, landlords and agents have almost no recourse at adjudication. Vantage documentation is built specifically to hold up under scrutiny — so when a dispute arises, the evidence is already there.
           </p>
           <a
             href="/#contact"
             className="inline-flex h-11 items-center justify-center gradient-bg text-white px-8 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
           >
-            Enquire
+            Get Protected
           </a>
         </div>
       </section>

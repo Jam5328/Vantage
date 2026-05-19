@@ -7,14 +7,14 @@ import LeadForm from "@/components/forms/LeadForm";
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
-  const [scrollDark, setScrollDark] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       if (!heroRef.current) return;
       const heroH = heroRef.current.offsetHeight;
-      const progress = Math.min(window.scrollY / (heroH * 0.7), 1);
-      setScrollDark(progress);
+      const progress = Math.min(window.scrollY / (heroH * 0.65), 1);
+      setScrollProgress(progress);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -24,63 +24,84 @@ export default function Home() {
     <div className="w-full">
 
       {/* Hero */}
-      <section ref={heroRef} className="relative h-dvh flex items-start justify-center overflow-hidden">
+      <section ref={heroRef} className="relative h-dvh overflow-hidden">
+
+        {/* Background image — fully visible at load */}
         <div className="absolute inset-0 z-0">
           <img
             src={bristolAerial}
             alt="Bristol residential properties"
             className="w-full h-full object-cover object-center"
           />
-          {/* Base gradient — lighter so more image shows */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D2A]/70 via-[#16163F]/30 to-transparent" />
-          {/* Scroll-driven darkening overlay */}
+          {/* Minimal bottom gradient for text readability only */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D2A]/55 via-transparent to-transparent" />
+          {/* Scroll-driven darkening — starts at 0, builds as you scroll */}
           <div
-            className="absolute inset-0 bg-[#0D0D2A] pointer-events-none transition-none"
-            style={{ opacity: scrollDark * 0.65 }}
+            className="absolute inset-0 bg-[#0D0D2A] pointer-events-none"
+            style={{ opacity: scrollProgress * 0.75 }}
           />
+          {/* White fade at very top — blends navbar seamlessly into photo */}
+          <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white/20 to-transparent pointer-events-none z-10" />
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-20 sm:pt-24 md:pt-28 text-center space-y-5 sm:space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            className="flex flex-col items-center gap-3 sm:gap-5"
-          >
-            <img
-              src={vantageIcon}
-              alt="VANTAGE"
-              className="w-12 h-12 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain"
-            />
-            <h1 className="text-5xl sm:text-7xl md:text-9xl font-serif text-white tracking-[0.12em] uppercase leading-none">
-              VANTAGE
-            </h1>
-            <p className="text-xs sm:text-base md:text-lg text-white/60 font-light tracking-[0.2em] uppercase">
-              Bristol Property Documentation
-            </p>
-          </motion.div>
+        {/* Brand mark — top right, horizontal */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="absolute top-0 right-0 z-20 flex items-center gap-2.5 px-6 sm:px-8 pt-5 sm:pt-6"
+        >
+          <img
+            src={vantageIcon}
+            alt="Vantage"
+            className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+          />
+          <span className="font-serif text-sm sm:text-base tracking-[0.2em] uppercase text-white/80">
+            Vantage
+          </span>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-2 sm:pt-4"
-          >
-            <a
-              href="#contact"
-              className="inline-flex h-11 sm:h-12 items-center justify-center gradient-bg text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
-              data-testid="link-book-call"
+        {/* Main hero content — centred */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center px-6">
+          <div className="text-center space-y-6 sm:space-y-8 max-w-3xl">
+            <motion.h1
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-tight"
             >
-              Book a Call
-            </a>
-            <Link
-              href="/services"
-              className="inline-flex h-11 sm:h-12 items-center justify-center border border-white/40 text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
-              data-testid="link-services"
+              Every detail,<br className="hidden sm:block" /> professionally captured.
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="text-sm sm:text-base text-white/60 font-light tracking-[0.15em] uppercase"
             >
-              View Services
-            </Link>
-          </motion.div>
+              Bristol Property Documentation
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.35 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-2"
+            >
+              <a
+                href="#contact"
+                className="inline-flex h-11 sm:h-12 items-center justify-center gradient-bg text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
+                data-testid="link-book-call"
+              >
+                Book a Call
+              </a>
+              <Link
+                href="/services"
+                className="inline-flex h-11 sm:h-12 items-center justify-center border border-white/40 text-white px-8 sm:px-10 text-sm font-medium tracking-wide transition-colors hover:border-white/70 hover:bg-white/5"
+                data-testid="link-services"
+              >
+                View Services
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -112,6 +133,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Platforms — "Used across" */}
+      <section className="py-16 border-b border-white/10" style={{ backgroundColor: "#0D0D2A" }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <p className="text-xs font-light uppercase tracking-[0.3em] text-white/30">
+              Used by clients operating across
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14">
+              {[
+                { name: "airbnb", style: "font-sans font-semibold tracking-tight text-lg" },
+                { name: "Rightmove", style: "font-sans font-bold tracking-tight text-lg" },
+                { name: "zoopla", style: "font-sans font-bold tracking-tight text-lg" },
+                { name: "Booking.com", style: "font-sans font-bold tracking-tight text-base" },
+                { name: "OpenRent", style: "font-sans font-semibold tracking-wide text-base" },
+                { name: "VRBO", style: "font-sans font-black tracking-widest text-base" },
+              ].map(({ name, style }) => (
+                <span
+                  key={name}
+                  className={`${style} text-white/22 select-none`}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Problems We Solve */}
       <section className="py-24" style={{ backgroundColor: "#16163F" }}>
         <div className="max-w-6xl mx-auto px-6">
@@ -122,7 +177,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.25em] gradient-text mb-4">Why VANTAGE</p>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] gradient-text mb-4">Why Vantage</p>
             <h2 className="text-3xl md:text-4xl font-serif text-white">Problems We Solve</h2>
           </motion.div>
 
@@ -213,12 +268,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
-                className="p-10 space-y-4 group transition-colors"
+                className="p-10 space-y-4"
                 style={{ backgroundColor: "#16163F" }}
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-white/20 font-light">0{i + 1}</span>
-                </div>
+                <span className="text-xs text-white/20 font-light">0{i + 1}</span>
                 <h3 className="text-xl font-serif text-white">{title}</h3>
                 <p className="text-sm text-white/55 font-light leading-relaxed">{desc}</p>
               </motion.div>
@@ -301,7 +354,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-serif text-white">Built on operational experience</h2>
             <div className="space-y-5">
               <p className="text-sm text-white/60 font-light leading-relaxed">
-                VANTAGE is not a creative media agency repackaged for property. It is a structured documentation service built by someone with real property management experience and an understanding of how important clear evidence, accurate reporting and reliable records are throughout a tenancy lifecycle.
+                Vantage is not a creative media agency repackaged for property. It is a structured documentation service built by someone with real property management experience and an understanding of how important clear evidence, accurate reporting and reliable records are throughout a tenancy lifecycle.
               </p>
               <p className="text-sm text-white/60 font-light leading-relaxed">
                 The focus is simple: produce organised, professional property documentation that landlords, agents and operators can rely on.
